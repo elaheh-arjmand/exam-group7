@@ -16,3 +16,12 @@ read_delim(here("data", "exam_dataset.txt"))
 
 #assign name to variable
 dataset <- read_delim(here("data", "exam_dataset.txt"))
+
+#fixing column names, removing spases and putting everything in lowercase
+glimpse(dataset)
+dataset<-
+  dataset %>%
+  rename(bmi= `BMI kg/m2`,
+         randomization= Randomization,
+         attempts= `# attempts`,
+         failures= `# failures`)
