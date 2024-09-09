@@ -7,3 +7,12 @@
 #               
 # Project: exam-group7
 #-------------------------------------------###
+
+library(tidyverse)
+library(here)
+
+#read data
+read_delim(here("data", "exam_dataset.txt"))
+
+#assign name to variable
+dataset <- read_delim(here("data", "exam_dataset.txt"))
