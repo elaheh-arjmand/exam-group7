@@ -62,3 +62,11 @@ dataset<-
          attempts= `# attempts`,
          failures= `# failures`)
 
+#Author: SM, Date: 09.09.24, Time: 14.45
+#Separate the data in column "last_method_S_F" 
+#One new column called "intubation method" and one with "intubation success"
+dataset %>% 
+  separate(col = "last_method_S_F", 
+           into = c("intibation method", "intubation success"), 
+           sep = "_")
+
