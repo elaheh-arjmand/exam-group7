@@ -1,6 +1,6 @@
 #----Script Header-------------------------####
 # Date:09.09.2024         
-# Author: Elaheh Javadi Arjmand, Ane Helland     
+# Author: Elaheh Javadi Arjmand, Ane Helland, Sigurd Mydske     
 # Filename: exam-group7    
 # Description:  group work for RMED901 course
 #               
