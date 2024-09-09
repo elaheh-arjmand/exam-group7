@@ -38,4 +38,12 @@ dataset_nodupliactions <- distinct(dataset)
 #Naming the new dataset with no duplications as "dataset_noduplications"
 
 
+#fixing column names, removing spases and putting everything in lowercase
+glimpse(dataset)
+dataset<-
+  dataset %>%
+  rename(bmi= `BMI kg/m2`,
+         randomization= Randomization,
+         attempts= `# attempts`,
+         failures= `# failures`)
 
