@@ -73,3 +73,7 @@ glimpse(joint_dataset)
   #intubation_success = if_else(intubation_success==0, "success", "failure"),
   #view = if_else(view==0, "not good", "good"))
 
+#Saving
+fileName <- paste0("dataset-exam-group7-joint.txt") #creates an empty file
+write_delim(joint_dataset, 
+            file = here("DATA", fileName), delim="\t")
