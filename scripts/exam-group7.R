@@ -23,10 +23,6 @@ tail(dataset)
 glimpse(dataset)
 
 #Removing duplicates ----
-#possible functions to use:
-?distinct
-?duplicated
-
 #Finding duplicates
 duplicated(dataset)
 #Result: Provides a value of FALSE or TRUE for all rows. For all rows after 297, this returns the value "TRUE" 
@@ -50,7 +46,6 @@ dataset_nodup_sep <- dataset_nodup %>%
   pivot_wider(names_from = difficulties_intubating_feature, 
               values_from = difficulties_intubating_value)
 dataset_nodup_sep
-view(dataset_nodup_sep)
 
 
 #fixing column names----
@@ -70,3 +65,7 @@ dataset_nodup_sep<- dataset_nodup_sep %>%
            into = c("intibation method", "intubation success"), 
            sep = "_")
 
+#Saving
+fileName <- paste0("dataset-exam-group7-", Sys.Date(), ".txt") #creates an empty file
+write_delim(dataset_nodup_sep, 
+            file = here("DATA", fileName), delim="\t")
