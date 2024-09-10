@@ -14,3 +14,8 @@ myData_columns <- myData %>%
   mutate(conformity_rand_int = if_else((randomization == intubation_method), TRUE, FALSE)) %>% #New column to check conformity between method and randomization
   select(id, gender, age, everything()) %>% #Organize the columns in a specific order
   arrange(id) #Arrange the rows by increasing ID
+
+#Saving
+fileName <- paste0("dataset-exam-group7-columns.txt") #creates an empty file
+write_delim(myData_columns, 
+            file = here("DATA", fileName), delim="\t") #New text file with applied changes
