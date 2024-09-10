@@ -1,4 +1,4 @@
-id	month	year	age	bmi	randomization	attempts	failures	total_intubation_time	intubation_overall_S_F	view	intibation method	intubation success	bleeding	ease	sore_throat
+id	month	year	age	bmi	randomization	attempts	failures	total_intubation_time	intubation_overall_S_F	view	intubation_method	intubation_success	bleeding	ease	sore_throat
 1	4	2012	51	56.2	0	1	0	29	1	1	0	1	0	5	0
 2	7	2009	52	44.6	0	1	0	29	1	1	0	1	0	20	0
 3	10	2012	37	41.6	0	2	1	91	1	0	0	1	0	80	0

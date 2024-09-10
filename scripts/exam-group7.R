@@ -47,6 +47,13 @@ dataset_nodup_sep <- dataset_nodup %>%
               values_from = difficulties_intubating_value)
 dataset_nodup_sep
 
+#Author: SM, Date: 09.09.24, Time: 14.45----
+#Separate the data in column "last_method_S_F" 
+#One new column called "intubation method" and one with "intubation success"
+dataset_nodup_sep<- dataset_nodup_sep %>% 
+  separate(col = "last_method_S_F", 
+           into = c("intibation method", "intubation success"), 
+           sep = "_")
 
 #fixing column names----
 glimpse(dataset_nodup_sep)
@@ -55,15 +62,10 @@ dataset_nodup_sep<-
   rename(bmi= `BMI kg/m2`,
          randomization= Randomization,
          attempts= `# attempts`,
-         failures= `# failures`)
-
-#Author: SM, Date: 09.09.24, Time: 14.45----
-#Separate the data in column "last_method_S_F" 
-#One new column called "intubation method" and one with "intubation success"
-dataset_nodup_sep<- dataset_nodup_sep %>% 
-  separate(col = "last_method_S_F", 
-           into = c("intibation method", "intubation success"), 
-           sep = "_")
+         failures= `# failures`,
+         intubation_method = `intibation method`,
+         intubation_success = `intubation success` )
+glimpse(dataset_nodup_sep)
 
 #Saving
 fileName <- paste0("dataset-exam-group7-", Sys.Date(), ".txt") #creates an empty file
