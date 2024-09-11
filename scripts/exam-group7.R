@@ -10,7 +10,7 @@
 #install.packages("tidyverse") #remove hashtag if packages are not installed
 #install.packages("here")
 library(tidyverse)
-library"(here)
+library(here)
 
 #read data
 read_delim(here("data", "exam_dataset.txt"))
