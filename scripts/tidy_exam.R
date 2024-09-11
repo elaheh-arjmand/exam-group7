@@ -19,7 +19,7 @@ library(here)
 read_delim(here("data", "dataset-exam-group7.txt"))
 
 #assigning name to the dataframe (so it appears in the environment)
-dataset <- read_delim(here("data", "dataset-exam-group7-2024-09-10.txt"))
+dataset <- read_delim(here("data", "dataset-exam-group7.txt"))
 
 #exploring
 glimpse(dataset)
