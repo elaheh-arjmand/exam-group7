@@ -16,7 +16,7 @@ library(tidyverse)
 library(here)
 
 #read data
-read_delim(here("data", "dataset-exam-group7-2024-09-10.txt"))
+read_delim(here("data", "dataset-exam-group7.txt"))
 
 #assigning name to the dataframe (so it appears in the environment)
 dataset <- read_delim(here("data", "dataset-exam-group7-2024-09-10.txt"))

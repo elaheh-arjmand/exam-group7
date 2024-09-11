@@ -68,6 +68,6 @@ dataset_nodup_sep<-
 glimpse(dataset_nodup_sep)
 
 #Saving
-fileName <- paste0("dataset-exam-group7-", Sys.Date(), ".txt") #creates an empty file
+fileName <- paste0("dataset-exam-group7.txt") #creates an empty file
 write_delim(dataset_nodup_sep, 
             file = here("DATA", fileName), delim="\t")
