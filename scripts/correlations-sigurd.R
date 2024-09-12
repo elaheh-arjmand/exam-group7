@@ -5,6 +5,8 @@ dataset_tidy <- read_delim(here("data", "dataset-exam-group7-columns.txt"))
 
 #load ggplot-library
 library(ggplot2)
+library(tidyverse)
+library(here)
 
 #Create an correlation matrix
 install.packages("GGally")
@@ -37,3 +39,12 @@ ggplot(data = dataset_tidy %>% filter(!is.na(age))) +
   facet_wrap(vars(age_cat)
 )
 #The plot may give the impression that there are a higher number of failures in older age groups
+
+# - Does the randomization depend on the gender?
+
+# Create a table for gender and randomization
+table_data <- table(dataset_tidy$gender, dataset_tidy$randomization)
+chi_test <- chisq.test(table_data)
+print(chi_test)
+
+#The p-value of 1 indicated no dependency between gender and randomization
