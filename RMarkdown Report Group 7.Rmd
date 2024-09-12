@@ -1,0 +1,87 @@
+---
+title: "Report - Exam Group 7"
+author: "Elaheh Javadi Arjmand, Ane Helland, Sigurd Mydske, Stand Hiestand"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(here)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+myData <- read_delim(here("data", "dataset-exam-group7.txt"))
+myData_columns <- read_delim(here("data", "dataset-exam-group7-columns.txt"))
+```
+
+
+## Data Source
+
+Amy S. Nowacki, ‘Laryngoscope Dataset’, TSHS Resources Portal (2017). Available at https://www.causeweb.org/tshs/laryngoscope/
+
+Data and description taken from [medicaldata webpage](https://higgi13425.github.io/medicaldata/reference/laryngoscope.html).
+
+This data set contains 99 adult patients with a body mass index between 30 and 50 kg/m2 who required orotracheal intubation for elective surgery. Patient demographics, airway assessment data, intubation success rate, time to intubation, ease of intubation, and occurrence of complications were recorded.
+
+
+## Working progress
+
+This report will provide a day-to-day report of the work progress by our group. 
+
+
+#### Day 5
+
+On this day, we created an initial script which would read the exam dataset described over, and started to explore it using the head, tail and glimpse-functions. We also removed duplicate entries. We also separated some values containing multiple points of information, and cleaned up the name of the columns.
+The data at the end of the day looked like this:
+
+```{r, echo=FALSE}
+glimpse(myData)
+```
+It obviously needed further wrangling to enable efficient analysis. 
+
+#### Day 6
+
+On day 6, a second dataset was joined to the original dataset using inner_join. We also changed many of the variables to factors. 
+
+```{r, echo=FALSE}
+glimpse(myData_columns)
+```
+Here we have wrangled several additional variables from the original dataset. 
+
+#### Day 7
+
+We experimented with graphical visualization of our data using ggplot. Here is an example of a geom_point with and without a regression line. 
+
+```{r, echo=FALSE}
+  plot(myData_columns %>% 
+    ggplot(aes(x = bmi, y = total_intubation_time)) +
+    geom_point())
+
+```
+```{r, echo=FALSE}
+plot(
+  myData_columns %>% 
+    ggplot(aes(x = bmi, y = total_intubation_time)) +
+    geom_point() + 
+    geom_smooth(method = "lm"))
+```
+
+This shows the correlation between BMI and Total intubation time. 
+
+#### Day 8
+We started to use simple statistical analysis, for example using a t-test for difference in means in gender groups
+```{r}
+t_test_result <-
+  myData_columns %>%
+    t.test(total_intubation_time~gender, data=.)
+print(t_test_result)
+```
+
+p-value= 0.0063, there is a difference in mean total intubation time between gender groups. 
+mean total intubation time for males= 50.22 and for females= 33.68
+
+
+### Source material
+```{r, include=FALSE}
+sessionInfo()
+```
+
