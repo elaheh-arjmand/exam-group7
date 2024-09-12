@@ -1,11 +1,11 @@
-#Create plots to help you answer these questions: 
+#Create plots to help you answer this question: Do age and BMI have a linear relationship? 
 #Author Ane Helland
 
 library(ggplot2)
 
 
 #just trying some stuff:
-myplot_age_attempts <- ggplot(myData_columns,
+ggplot(myData_columns,
   aes(x=age, y=attempts))+
   geom_point(aes(col = attempts))
 
@@ -29,16 +29,8 @@ library(GGally)
 ggcorr(myData_columns)
 #provides a plot of correlation (positive and negative)
 
-#  - Are there any correlated measurements? Yes. 
-#  - Does the age distribution depend on `gender`? weak, positive correlation
-#  - Does BMI depend on `age`? weak, negative correlation
-#  - Do age and BMI have a linear relationship? 
-#  - Does number of failures change with age?
-
-
 #Do age and BMI have a linear relationship?
 
-#here is the correct way:
 ggplot(myData_columns,
         aes(
           x=age, 
