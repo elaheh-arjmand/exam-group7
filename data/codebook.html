@@ -2986,6 +2986,16 @@ vertical-align: -.125em;
 <td style="text-align: left;">double</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">0 = female, 1 = male</td>
+<td style="text-align: left;">factor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">age in years</td>
+<td style="text-align: left;">double</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">month</td>
 <td style="text-align: left;">month of the procedure</td>
 <td style="text-align: left;">numeric</td>
@@ -2995,28 +3005,23 @@ vertical-align: -.125em;
 <td style="text-align: left;">year of the procedure</td>
 <td style="text-align: left;">numeric</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">age</td>
-<td style="text-align: left;">age in years</td>
-<td style="text-align: left;">double</td>
-</tr>
 <tr class="odd">
-<td style="text-align: left;">BMI kg/m2</td>
+<td style="text-align: left;">bmi</td>
 <td style="text-align: left;">Body Mass Index (kg/m^2)</td>
 <td style="text-align: left;">double</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Randomization</td>
+<td style="text-align: left;">randomization</td>
 <td style="text-align: left;">Laryngoscope randomized, 0 = Standard Macintosh #4, 1 = AWS Pentaz Video</td>
 <td style="text-align: left;">factor</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"># attempts</td>
+<td style="text-align: left;">attempts</td>
 <td style="text-align: left;">Number of intubation attempts</td>
 <td style="text-align: left;">numeric</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"># failures</td>
+<td style="text-align: left;">failures</td>
 <td style="text-align: left;">Number of intubation failures</td>
 <td style="text-align: left;">numeric</td>
 </tr>
@@ -3031,51 +3036,38 @@ vertical-align: -.125em;
 <td style="text-align: left;">factor</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">difficulties_intubating_feature</td>
-<td style="text-align: left;">were there any difficulties? one of: “bleeding”, “ease” (aase of tracheal intubation), or “sore_throat” (severity of postoperative sore throat)</td>
-<td style="text-align: left;">factor</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">difficulties_intubating_value</td>
-<td style="text-align: left;">value for the feature above: for “bleeding” 0 = no, 1 = yes; for “ease” 0 = extremely easy to 100 = extremely difficult; for “sore_throat” 0 = none; 1 = mild; 2 = moderate; 3 = severe</td>
-<td style="text-align: left;">numeric</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">view</td>
 <td style="text-align: left;">Cormack-Lehane grade of glottic view: 0 = “not good” (Cormack-Lehane grade 1 or 2); 1 = “good” (Cormack-Lehane grade 3 or 4)</td>
 <td style="text-align: left;">factor</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">last_method_S_F</td>
-<td style="text-align: left;">which method was used in the last attempt of intubation (0 = Standard Macintosh #4, 1 = AWS Pentaz Video) and whether it was overall success (1) or failure (0) of intubation</td>
-<td style="text-align: left;">character</td>
-</tr>
-</tbody>
-</table>
-<p>Additional dataset:</p>
-<table class="table">
-<colgroup>
-<col style="width: 29%">
-<col style="width: 38%">
-<col style="width: 31%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"><em><strong>variable</strong></em></th>
-<th style="text-align: left;"><em><strong>description</strong></em></th>
-<th style="text-align: left;"><em><strong>type</strong></em></th>
-</tr>
-</thead>
-<tbody>
 <tr class="odd">
-<td style="text-align: left;">id</td>
-<td style="text-align: left;">patient ID</td>
-<td style="text-align: left;">double</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">gender</td>
-<td style="text-align: left;">0 = female, 1 = male</td>
+<td style="text-align: left;">intubation_method</td>
+<td style="text-align: left;">Which method was used in the last attempt of intubation: 0 = Standard Macintosh #4, 1 = AWS Pentaz Video/</td>
 <td style="text-align: left;">factor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">intubation_success</td>
+<td style="text-align: left;">Whether the intubation was overall a success (1) or failure (0)</td>
+<td style="text-align: left;">factor</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bleeding</td>
+<td style="text-align: left;">Was there bleeding: 0 = no, 1 = yes</td>
+<td style="text-align: left;">numeric</td>
+</tr>
+<tr class="odd">
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ease</td>
+<td style="text-align: left;">Ease of tracheal intubation: 0 = extremely easy to 100 = extremely difficult</td>
+<td style="text-align: left;">numeric</td>
+</tr>
+<tr class="odd">
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sore_throat</td>
+<td style="text-align: left;">Severity of postoperative sore throat: 0 = none; 1 = mild; 2 = moderate; 3 = severe</td>
+<td style="text-align: left;">numeric</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">asa</td>
@@ -3086,6 +3078,26 @@ vertical-align: -.125em;
 <td style="text-align: left;">Mallampati</td>
 <td style="text-align: left;">Mallampati score predicting ease of intubation 1 = Full visibility of tonsils, uvula and soft palate (easy intubation); 2 = Visibility of hard and soft palate, upper portion of tonsils and uvula; 3 = Soft and hard palate and base of the uvula are visible; 4 = Only Hard Palate visible (difficult intubation)</td>
 <td style="text-align: left;">factor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gender_character</td>
+<td style="text-align: left;">Identifies participants as female or male</td>
+<td style="text-align: left;">character</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mallampati_times_asa</td>
+<td style="text-align: left;">Multiplying Mallapati with asa. Range = 2-12</td>
+<td style="text-align: left;">numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ease_quartile</td>
+<td style="text-align: left;">Quartiles for ease scores</td>
+<td style="text-align: left;">factor</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">conformity_rand_int</td>
+<td style="text-align: left;">Check conformity between method and randomization</td>
+<td style="text-align: left;">logical</td>
 </tr>
 </tbody>
 </table>
