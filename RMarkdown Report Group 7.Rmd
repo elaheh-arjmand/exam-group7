@@ -81,7 +81,7 @@ mean total intubation time for males= 50.22 and for females= 33.68
 
 
 ### Source material
-```{r, include=FALSE}
+```{r, echo=FALSE}
 sessionInfo()
 ```
 
