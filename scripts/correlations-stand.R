@@ -2,12 +2,14 @@
  
 # Are there any correlated measurements? Yes :)
 install.packages("GGally")
+library(here)
+library(tidyverse)
 library(GGally)
-ggcorr(myData_columns)
-
 read.delim(here("DATA", "dataset-exam-group7-columns.txt"))
 myData_columns <- read.delim(here("DATA", "dataset-exam-group7-columns.txt"))
 myData_columns
+
+ggcorr(myData_columns)
 
 # Compute a correlation matrix
 data(myData_columns)
@@ -54,8 +56,45 @@ ggplot(data = myData_columns) +
 
   
 #  - Does number of failures change with age?
-
 ggplot(myData_columns,
   aes(x = age, y = failures)) +
   geom_point()
+
+view(myData_columns)
+
+# - Is there an association between BMI and total intubation time? 
+#regression (plotting)
+myData_columns %>% 
+  ggplot(aes(x = bmi, y = total_intubation_time)) +
+  geom_point()
+
+myData_columns %>% 
+  ggplot(aes(x = bmi, y = total_intubation_time)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+#line of best fit, there appears to be a negative association between bmi and 
+#total intubation time
+
+#creating an object for the plot with line of best fit
+bmi_intub_time_plot <- 
+  myData_columns %>% 
+  ggplot(aes(x = bmi, y = total_intubation_time)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+bmi_intub_time_plot
+
+#regression -
+myData_columns %>% 
+  lm(total_intubation_time~bmi, data = .) %>% 
+  broom::tidy()
+#indicates there is a statistically significant negative association between
+#increasing bmi and intubation time (as bmi increases intubation time decreases)
+
+bmi_intub <-
+  myData_columns %>% 
+  lm(total_intubation_time~bmi, data = .) 
+
+bmi_intub
+
 
