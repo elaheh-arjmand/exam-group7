@@ -14,11 +14,6 @@ ggplot(myData_columns,
         geom_point(aes(col=failures))
 #plotting age vs attempts and age vs failures. 
 
-#plotting them next to each other
-library(patchwork)
-myplot_age_attempts + myplot_age_failures
-
-
 
 #Correlation-package:
 install.packages("ggcorrplot")  
@@ -40,3 +35,15 @@ ggplot(myData_columns,
   geom_smooth(method = "lm")
 
 #answer: weak, negative correlation. 
+
+#Does the randomization depend on BMI?
+
+myData_columns$bmi
+myData_columns$randomization
+
+#bmi is a continous variable, randomization is 0 or 1. 
+
+
+myData_columns %>% 
+  t.test(bmi~randomization, data = .)
+#p value 0.49, not significant. Randomization does not depend on bmi. 
