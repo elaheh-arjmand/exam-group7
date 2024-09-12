@@ -36,4 +36,4 @@ ggplot(data = dataset_tidy %>% filter(!is.na(age))) +
 )+
   facet_wrap(vars(age_cat)
 )
-
+#The plot may give the impression that there are a higher number of failures in older age groups
