@@ -43,6 +43,7 @@ ggplot(myData_columns, aes(x = age, y = bmi)) +
        x = "Age",
        y = "BMI") +
   theme_minimal()
+#answer: weak, negative correlation based on the linear regression model. 
 
 #Question 4: Do age and BMI have a linear relationship?
   
@@ -98,7 +99,7 @@ dataset_tidy <- dataset_tidy %>%
   chi_test <- chisq.test(table_data)
   print(chi_test)
   
-  #The p-value of 1 indicated no dependency between gender and randomization
+#The p-value of 1 indicated no dependency between gender and randomization
   
   
 #Question 7: Does the randomization depend on BMI?
@@ -144,6 +145,7 @@ dataset_tidy <- dataset_tidy %>%
     lm(total_intubation_time~bmi, data = .) 
   
   bmi_intub
+#from the regression model, it seems to be a correlation of less total intubation time with increasing bmi?
   
 #Question 9: According to the data, was there a difference of total intubation time between gender categories?
 
