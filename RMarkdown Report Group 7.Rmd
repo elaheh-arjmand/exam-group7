@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(here)
+library(GGally)
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 myData <- read_delim(here("data", "dataset-exam-group7.txt"))
 myData_columns <- read_delim(here("data", "dataset-exam-group7-columns.txt"))
@@ -79,6 +80,34 @@ print(t_test_result)
 p-value= 0.0063, there is a difference in mean total intubation time between gender groups. 
 mean total intubation time for males= 50.22 and for females= 33.68
 
+
+## Day 7 & 8 Questions
+Question 1: Are there any correlated measurements?
+Correlation plot indicates yes.
+```{r, echo=FALSE}
+  ggcorr(myData_columns)
+
+```
+
+Question 2: Does the age distribution depend on `gender`?
+It looks like there is a difference in age distribution in females vs males.
+```{r, echo=FALSE}
+  ggplot(data = myData_columns) +
+  aes(
+    x = id,
+    y = age
+  ) +
+  geom_point() +
+  facet_wrap(facets = vars(gender)) +
+  geom_smooth(method = "lm")
+
+```
+
+Question 3: Does BMI depend on `age`?
+```{r, echo=FALSE}
+ 
+
+```
 
 ### Source material
 ```{r, echo=FALSE}
