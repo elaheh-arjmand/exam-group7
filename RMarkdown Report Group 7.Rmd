@@ -9,6 +9,7 @@ output: html_document
 library(tidyverse)
 library(here)
 library(GGally)
+library(knitr)
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 myData <- read_delim(here("data", "dataset-exam-group7.txt"))
 myData_columns <- read_delim(here("data", "dataset-exam-group7-columns.txt"))
@@ -104,10 +105,110 @@ It looks like there is a difference in age distribution in females vs males.
 ```
 
 Question 3: Does BMI depend on `age`?
+There is a weak negative correlation based on the linear regression model. 
 ```{r, echo=FALSE}
- 
+ ggplot(data = myData_columns) +
+  aes(
+    x = age,
+    y = bmi
+  ) +
+  geom_point()
+
+ggplot(myData_columns, aes(x = age, y = bmi)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "blue") +  # Adds a linear regression line
+  labs(title = "BMI vs Age",
+       x = "Age",
+       y = "BMI") +
+  theme_minimal()
 
 ```
+
+Question 4: Do age and BMI have a linear relationship?
+There appears to be a weak, negative correlation.
+```{r, echo=FALSE}
+  ggplot(myData_columns,
+         aes(
+           x=age, 
+           y=bmi
+         ))+
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+Question 5: Does number of failures change with age?
+The plot may give the impression that there are a higher number of failures in older age groups
+```{r, include=FALSE}
+ dataset_tidy <- read_delim(here("data", "dataset-exam-group7-columns.txt"))
+  
+dataset_tidy <- dataset_tidy %>%
+    mutate(age_cat = as.factor(case_when(age < 30 ~ "20-30", 
+                                         age > 30 & age < 40 ~ "30-40",
+                                         age > 40 & age < 50 ~ "40-50",
+                                         age > 50 & age < 60 ~ "50-60",
+                                         age > 60 & age < 70 ~ "60-70",
+                                         age > 70 & age < 80 ~ "70-80"
+    )))
+levels(dataset_tidy$age_cat)
+  
+dataset_tidy %>% count(age_cat)
+  
+fct_drop("NA")
+
+```
+ 
+    
+```{r, echo=FALSE}
+    ggplot(data = dataset_tidy %>% filter(!is.na(age))) +
+    aes(
+      x = failures
+    ) +
+    geom_bar(
+      size = 2,
+    )+
+    facet_wrap(vars(age_cat)
+    ) 
+```
+  
+Question 6: Does the randomzation depend on the gender?
+The p-value of 1 indicated no dependency between gender and randomization
+```{r, echo=FALSE}
+table_data <- table(dataset_tidy$gender, dataset_tidy$randomization)
+  chi_test <- chisq.test(table_data)
+  print(chi_test)
+```
+  
+Question 7: Does the randomization depend on BMI?
+The p value is 0.49, not significant. Randomization does not depend on bmi.
+```{r, echo=FALSE}
+myData_columns %>% 
+  t.test(bmi~randomization, data = .)
+``` 
+ 
+Question 8: Is there an association between BMI and total intubation time?
+From the regression model, there seems to be a correlation of decreasing intubation time with increasing bmi
+```{r, echo=FALSE}
+ #regression (plotting)
+  
+  myData_columns %>% 
+    ggplot(aes(x = bmi, y = total_intubation_time)) +
+    geom_point() + 
+    geom_smooth(method = "lm")
+  #line of best fit, there appears to be a negative association between bmi and 
+  #total intubation time
+
+  
+
+``` 
+
+Question 9: According to the data, was there a difference of total intubation time between gender categories?
+P-value= 0.0063, there is a difference in mean total intubation time between gender groups. Mean total intubation time for males= 50.22 and for females= 33.68
+```{r, echo=FALSE}
+ dataset_tidy %>%
+    t.test(total_intubation_time~gender, data=.)
+``` 
+
 
 ### Source material
 ```{r, echo=FALSE}
